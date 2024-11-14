@@ -257,6 +257,7 @@
 		position: absolute;
 		top: var(--ruler-height);
 		margin-top: var(--size-4-2);
+		margin-right: var(--size-4-2);
 		right: calc(100% - var(--stage-client-width));
 	}
 	/*! Icon sizing */

@@ -35,7 +35,7 @@ export class TimelineItemView extends obsidian.ItemView {
 		private noteProperties: ObsidianNotePropertyRepository,
 	) {
 		super(leaf);
-		this.navigation = false;
+		this.navigation = true;
 
 		this.scope = new obsidian.Scope(this.app.scope);
 		this.scope.register(["Shift"], " ", () => {
@@ -123,37 +123,18 @@ export class TimelineItemView extends obsidian.ItemView {
 		menu: obsidian.Menu,
 		source: "more-options" | "tab-header" | string,
 	): void {
-		if (this.$mode === EditMode.Edit) {
-			menu.addItem(item => {
-				item.setIcon("book-open")
-					.setSection("pane")
-					.setTitle("View-only timeline")
-					.onClick(() => {
-						this.mode.set(EditMode.View);
-					});
-			});
-		} else if (this.$mode === EditMode.View) {
-			menu.addItem(item => {
-				item.setIcon("edit-3")
-					.setSection("pane")
-					.setTitle("Edit timeline")
-					.onClick(() => {
-						this.mode.set(EditMode.Edit);
-					});
-			});
-		}
+		super.onPaneMenu(menu, source);
 		menu.addItem(item => {
-			item.setIcon("link")
-				.setSection("view.linked")
-				.setTitle("Open linked markdown tab")
+			item.setIcon("book-open")
+				.setChecked(this.$mode === EditMode.View)
+				.setSection("pane")
+				.setTitle("View-only timeline")
 				.onClick(() => {
-					this.workspace.getLeaf("split", "horizontal").setViewState({
-						type: "empty",
-						group: this.leaf,
-					});
+					this.mode.set(this.$mode === EditMode.View 
+						? EditMode.Edit 
+						: EditMode.View);
 				});
 		});
-		return super.onPaneMenu(menu, source);
 	}
 
 	private openNoteInLinkedLeaf(note: Note): boolean {
@@ -222,7 +203,7 @@ export class TimelineItemView extends obsidian.ItemView {
 	}
 
 	protected async onOpen(): Promise<void> {
-		const content = this.containerEl.children[1];
+		const content = this.contentEl;
 
 		content.createEl("progress");
 

@@ -830,9 +830,6 @@
 			pointStyle?: TimelineItemElementStyle,
 		) {
 			if (canvas == null) return;
-			if (canvas.width != viewport.width) canvas.width = viewport.width;
-			if (canvas.height != viewport.height)
-				canvas.height = viewport.height;
 			const renderContext = canvas.getContext("2d");
 			if (renderContext == null) return;
 
@@ -989,6 +986,15 @@
 							element.style = selectedStyle;
 						}
 					}
+				}
+
+				const ratio = activeWindow.devicePixelRatio || 1;
+				if (canvas.width != viewport.width * ratio || canvas.height != viewport.height * ratio) {
+					canvas.width = viewport.width * ratio;
+					canvas.height = viewport.height * ratio;
+					canvas.style.width = viewport.width + 'px';
+					canvas.style.height = viewport.height + 'px';
+					renderContext.scale(ratio, ratio);
 				}
 
 				renderLayout(renderContext, viewport, elements, dragPreview);

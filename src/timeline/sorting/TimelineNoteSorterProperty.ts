@@ -48,6 +48,10 @@ export class NotePropertyValueSelector implements NumericNoteValueSelector {
 		const value = note.properties()[this.property.name()];
 		if (typeof value === "number") return value;
 		if (typeof value === "string") {
+			const datetime = window.moment(value);
+			if (datetime.isValid()) {
+				return datetime.valueOf();
+			}
 			const parsed = parseFloat(value);
 			if (!isNaN(parsed)) return parsed;
 			return 0;

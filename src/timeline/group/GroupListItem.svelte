@@ -67,6 +67,7 @@
 	<ActionButton
 		class="clickable-icon"
 		aria-label="Delete group"
+		data-tooltip-position="left"
 		on:action={onRemove}
 	>
 		<svg

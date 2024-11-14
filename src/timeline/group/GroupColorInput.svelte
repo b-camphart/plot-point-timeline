@@ -38,6 +38,7 @@
 <input
 	type="color"
 	aria-label={"Click to change color\nDrag to reorder groups"}
+	data-tooltip-position="left"
 	bind:value={color}
 	on:mousedown={onmousedown}
 	{...$$restProps}

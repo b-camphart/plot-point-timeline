@@ -30,6 +30,7 @@
 	<li class="control-item">
 		<ActionButton
 			aria-label="Zoom In"
+			data-tooltip-position="left"
 			on:action={triggerZoomIn}
 			class="clickable-icon"
 		>
@@ -39,6 +40,7 @@
 	<li class="control-item">
 		<ActionButton
 			aria-label="Zoom Out"
+			data-tooltip-position="left"
 			on:action={triggerZoomOut}
 			class="clickable-icon"
 		>
@@ -48,6 +50,7 @@
 	<li class="control-item">
 		<ActionButton
 			aria-label="Zoom to Fit"
+			data-tooltip-position="left"
 			on:action={triggerZoomToFit}
 			class="clickable-icon"
 		>
@@ -57,6 +60,7 @@
 	<li class="control-item">
 		<ActionButton
 			aria-label="Scroll to Zero"
+			data-tooltip-position="left"
 			on:action={triggerScrollToZero}
 			class="clickable-icon"
 		>
@@ -66,6 +70,7 @@
 	<li class="control-item">
 		<ActionButton
 			aria-label="Scroll to First"
+			data-tooltip-position="left"
 			on:action={triggerScrollToFirst}
 			class="clickable-icon"
 		>

@@ -35,6 +35,7 @@
 			id="toggle-button"
 			class="open-button clickable-icon"
 			aria-label="Open"
+			data-tooltip-position="left"
 			on:action={() => (isOpen = true)}
 		>
 			<LucideIcon id="settings" />
@@ -44,6 +45,7 @@
 			id="toggle-button"
 			class="close-button clickable-icon"
 			aria-label="Close"
+			data-tooltip-position="left"
 			on:action={() => (isOpen = false)}
 		>
 			<LucideIcon id="x" />
